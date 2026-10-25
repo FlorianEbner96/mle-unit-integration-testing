@@ -11,12 +11,18 @@
 # - 02-intro-to-unit-testing.ipynb (<summary>Solution</summary> block)
 
 from src.unit_test_examples.division import divide
+import pytest
 
 
-def test_divide():
-    # This baseline is intentionally repetitive so it can be refactored.
-    assert divide(3, 2) == 1.5
-    assert divide(5, 5) == 1
-    assert divide(6, 2) == 3
-    assert divide(-2, 0) == "Cannot divide by zero"
-    assert divide(10, -2) == -5
+@pytest.mark.parametrize(
+    "x, y, expected_result",
+    [
+        (3, 2, 1.5),
+        (5, 5, 1),
+        (6, 2, 3),
+        (-2, 0, "Cannot divide by zero"),
+        (10, -2, -5),
+    ],
+)
+def test_divide_parametrized(x, y, expected_result):
+    assert divide(x, y) == expected_result

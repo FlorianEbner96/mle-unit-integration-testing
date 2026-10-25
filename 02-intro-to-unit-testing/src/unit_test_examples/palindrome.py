@@ -13,6 +13,10 @@
 def is_palindrome(s):
     # Work step by step so the test failures tell you which assumption broke.
     # 1) Normalize to lowercase.
+    s_normalized = s.lower()
+
     # 2) Remove spaces and punctuation.
+    s_nomalized = "".join(c for c in s_normalized if c.isalnum())
+
     # 3) Compare normalized string with its reverse.
-    raise NotImplementedError("Implement is_palindrome in palindrome.py")
+    return s_nomalized == s_nomalized[::-1]
