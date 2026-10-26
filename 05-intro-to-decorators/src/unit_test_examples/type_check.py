@@ -11,4 +11,14 @@
 
 
 def type_check(correct_type):
-    raise NotImplementedError("Implement type_check in type_check.py")
+    def decorator(function):
+        def wrapper(*args, **kwargs):
+            type = function(*args, **kwargs)
+            if isinstance(type, correct_type):
+                return type
+            print("Bad Type")
+            return None
+
+        return wrapper
+
+    return decorator
